@@ -1,0 +1,5 @@
+Installing Tools:
+
+1- VsCode
+2- GitBash
+3- Discord Desktop
