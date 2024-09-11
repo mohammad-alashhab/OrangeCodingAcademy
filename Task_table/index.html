@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        tr , th , td{
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+        body {
+            
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+        }
+        thead,td{
+            text-align: center;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <td colspan="3">My Daily Schedule</td>
+        </thead>
+        <tbody>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Time</th>
+                <th>Activity</th>
+            </tr>
+            <tr>
+                <th>morning</th>
+                <td>8am - 11am</td>
+                <td>Write Code</td>
+            </tr>
+            <tr>
+                <th>Break</th>
+                <td>11am - 12am</td>
+                <td>Eat Lunch</td>
+            </tr>
+            <tr>
+                <th>Afternoon</th>
+                <td>12m - 5am</td>
+                <td>Study for Other Courses</td>
+            </tr>
+            <tr>
+                <th>Evening</th>
+                <td rowspan="2">All Other Times</td>
+                <td>Free Time</td>
+            </tr>
+            <tr>
+                <th>Night</th>
+                <td>Sleep</td>
+            </tr>
+            <tr>
+                <td colspan="3">And that's what I do every day, 5 day a week. Just eat, sleep, code ..and recharge!</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
