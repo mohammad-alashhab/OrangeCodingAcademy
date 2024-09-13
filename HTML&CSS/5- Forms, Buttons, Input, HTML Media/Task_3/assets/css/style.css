@@ -1,0 +1,14 @@
+form {
+    width: 400px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+label[for="message"] {
+    display: flex;
+}
+textarea {
+    width: 240px;
+    height: 60px;
+    resize: vertical;
+}

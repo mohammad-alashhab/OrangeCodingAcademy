@@ -1,0 +1,10 @@
+.form-group{
+    margin-bottom: 15px;
+}
+textarea{
+    height: 100px;
+}
+p{
+    margin-top: 35px;
+    margin-bottom: 35px;
+}

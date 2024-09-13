@@ -1,0 +1,22 @@
+table{
+    border: 2px solid black;
+}
+td,th{
+    border: 1px solid black;
+    padding: 4px;
+}
+select{
+    width: 100px;
+}
+button[type="click-me"],button[type="reset"]{
+    width: 120px;
+    height: 50px;
+
+}
+button[type="submit"]{
+    width: 120px;
+    height: 50px;
+    display: flex;
+    justify-content: center;  /* Horizontally centers the content */
+    align-items: center; /* Vertically centers the content */
+}

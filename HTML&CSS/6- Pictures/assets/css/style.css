@@ -1,0 +1,33 @@
+.container{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    margin: auto 300px;
+}
+th, td{
+    border: 1px solid black;
+    padding: 8px;
+}
+.menu-items, .main-items, #top, footer{
+    margin: auto 20px;
+}
+
+.main-items img, .main-items p{
+    margin: auto 20px;
+}
+
+/* Style Contact Us page */
+
+fieldset {
+    padding: 20px 16px;
+}
+input{
+    margin-bottom: 20px;
+}
+textarea{
+    display: block;
+    width: 220px;
+    height: 100px;
+}
+input[type="submit"], input[type="reset"]{
+    margin-top: 2px;
+}
