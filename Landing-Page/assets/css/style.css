@@ -1,0 +1,499 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+:root {
+    --main-color: #fabf3e;
+    --secondary-color: #212832;
+}
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    background-color: #fff;
+}
+
+/* bg-box */
+.bg-box {
+    height: 100vh; /* Full viewport height */
+    background-image: url('../images/hero-bg.jpg');
+    background-size: cover; /* Makes sure the image covers the entire section */
+    /* background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; */
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+}
+
+.logo a {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 28px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin-left: 200px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+}
+
+.nav-links li a:hover {
+    color: #f0a500;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-icons a {
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.icon-item:hover{
+    color: #f0a500;
+}
+
+.order-btn {
+    background-color: #fabf3e;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+.order-btn:hover {
+    background-color: #f0a500;
+}
+
+.nav-links li a.active {
+    color: #f0a500;
+}
+
+/* Hero section styles */
+.hero{
+    display: flex;
+    color: #fff;
+    padding-left: 40px;
+}
+.hero-text {
+    width: auto;
+    padding: 40px;
+}
+.hero-text h1 {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+.hero-text p {
+    margin-bottom: 30px;
+}
+
+.indicators {
+    display: flex;
+    margin-top: 150px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 5px;
+}
+
+.indicator.active {
+    background-color: #f0a500;
+}
+
+
+/* Promotions section */
+.promotions {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    gap: 40px;
+}
+
+.promotion-item {
+    display: flex;
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    width: 500px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+.promotion-item img {
+    width: 150px;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 4px solid #f0a500;
+    margin-right: 20px;
+}
+
+.promotion-item h3 {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.promotion-item p {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.promotion-item span {
+    font-size: 30px;
+}
+
+/* Menu Section */
+.menu-section {
+    padding: 50px;
+    text-align: center;
+}
+
+.menu-section h2 {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.menu-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    background-color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.filter-btn.active {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+.menu-items {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Individual Menu Item Card */
+.menu-item {
+    width: 300px;
+    background-color: #222831;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.menu-item img:hover {
+    width: 65%;
+}
+
+/* Menu Item Image */
+.menu-item img {
+    width: 60%;
+    padding: 30px 0px;
+    height: 200px;
+}
+.menu-item .img-card {
+    background-color: #f1f2f3;
+    object-fit: cover; 
+    border-bottom-left-radius: 40px;
+}
+
+/* Card Content */
+.card-content {
+    padding: 20px;
+    background-color: #222831;
+    color: #fff;
+    text-align: left;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 14px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Card Bottom Section */
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Shop Button */
+.shop-btn {
+    background-color: #fabf3e;
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 220px;
+}
+
+.shop-btn:hover {
+    background-color: #f0a500;
+}
+
+.shop-btn i {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* About Section */
+.about-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    margin-top: 50px;
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.about-content h2{
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+.about-content p{
+    margin-bottom:50px;
+}
+.about-content{
+    width: 60%;
+    padding-left: 100px;
+}
+.about-section img {
+    width: 400px;
+}
+
+/* Booking Section */
+.booking-section {
+    padding: 50px;
+}
+.booking-section h2{
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 36px;
+    margin-top: 30px;
+}
+
+.booking-section input, .booking-section select{
+    padding: 10px;
+    width: 500px;
+    margin: 0 auto;
+}
+.main-container{
+    display: flex;
+}
+
+.google-map{
+    margin-top: 96px;
+    margin-left: 30px;
+}
+
+
+/* Testimonial Section */
+.testimonial-section {
+    padding: 0px 100px;
+    margin-bottom: 100px;
+
+}
+
+.testimonial-section h1 {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.testimonials {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.testimonial-item {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    width: 600px;
+    color: #fff;
+}
+
+.testimonial-item p {
+    font-style: italic;
+    margin-bottom: 20px;
+}
+.customer-info h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.customer-img img{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    margin-top: 20px;
+    border: 4px solid #f0a500;
+}
+
+.customer-img{
+    display: flex;
+    gap: 43%;
+}
+
+/* arrow icons*/
+
+.arrow-icons {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.arrow-icons li {
+    display: inline-block;
+    margin-top: 50px;
+}
+
+.arrow-icons li a {
+    background-color: var(--main-color);
+    border-radius: 50%;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.arrow-icons li a:hover {
+    color: var(--secondary-color);
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 50px 100px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+}
+.footer-content h1{
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+.contact-info h1, .opening-hours h1{
+    font-weight: lighter;
+    font-size: 25px;
+}
+.footer-content a{
+    display: flex;
+    color: #fff;
+    justify-content: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s ease-in-out;
+}
+.footer-bottom {
+    border-top: 1px solid var(--secondary-color);
+    padding-top: 50px;
+}
+
+/* social midea */
+
+.social-icons {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.social-icons li {
+    display: inline-block;
+}
+
+.social-icons li a {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons li a:hover {
+    color: #f0a500;
+}
+
