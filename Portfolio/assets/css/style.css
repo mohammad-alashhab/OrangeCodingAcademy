@@ -85,7 +85,20 @@ p {
     align-items: center;
     padding: 20px 0;
 }
+.nav-items.hidden {
+    display: none; /* Hide items by default */
+}
 
+.nav-items.show {
+    display: flex; /* Show items in a column */
+    flex-direction: column;
+    position: absolute; /* Position dropdown */
+    background-color: #121212; /* Background color */
+    top: 60px; /* Adjust based on navbar height */
+    left: 0;
+    right: 0;
+    z-index: 1; /* Ensure it appears above other content */
+}
 .footer-items, .nav-items{
     display: flex;
     justify-content: center;
@@ -573,20 +586,27 @@ p {
         max-width: 95%; /* Adjust for medium screens */
     }
 
-    .navbar {
+    /* .navbar {
         flex-direction: column; 
-    }
-
-    .nav-items {
-        flex-direction: column; /* Stack footer and nav items */
-    }
+    } */
 
     .portfolio-items {
         grid-template-columns: repeat(2, 1fr); /* Two columns */
     }
-
-    .skills-items {
-        grid-template-columns: repeat(1, 1fr); /* Single column */
+    .skills-items{
+        width: fit-content;
+    }
+    .skill-box .description{
+        width: 200px;
+    }
+    .bar{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        font-size: 12px;
+    }
+    .btn-hidden{
+        display: none;
     }
 }
 
@@ -606,6 +626,9 @@ p {
         font-size: 1.75rem; /* Adjust h3 size */
     }
 
+    .nav-items {
+        flex-direction: column; 
+    }
     .box-1-container {
         flex-direction: column; /* Stack content */
         align-items: center; /* Center items */
@@ -625,9 +648,12 @@ p {
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 672px) {
     .nav-link, .footer-link {
         padding: 5px 10px; /* Adjust padding for smaller screens */
+    }
+    .skills-items {
+        grid-template-columns: repeat(1, 1fr); /* Single column */
     }
 
     .btn {
