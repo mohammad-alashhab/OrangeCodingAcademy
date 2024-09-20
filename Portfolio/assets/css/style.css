@@ -605,9 +605,6 @@ p {
         width: 100%;
         font-size: 12px;
     }
-    .btn-hidden{
-        display: none;
-    }
 }
 
 @media (max-width: 768px) {
@@ -645,6 +642,9 @@ p {
 
     .footer-item {
         text-align: center; /* Center footer items */
+    }
+    .btn-hidden{
+        display: none;
     }
 }
 
