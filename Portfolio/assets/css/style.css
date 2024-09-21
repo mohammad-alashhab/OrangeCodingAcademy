@@ -86,18 +86,18 @@ p {
     padding: 20px 0;
 }
 .nav-items.hidden {
-    display: none; /* Hide items by default */
+    display: none; 
 }
 
 .nav-items.show {
-    display: flex; /* Show items in a column */
+    display: flex; 
     flex-direction: column;
-    position: absolute; /* Position dropdown */
-    background-color: #121212; /* Background color */
-    top: 60px; /* Adjust based on navbar height */
+    position: absolute; 
+    background-color: #121212;
+    top: 60px;
     left: 0;
     right: 0;
-    z-index: 1; /* Ensure it appears above other content */
+    z-index: 1;
 }
 .footer-items, .nav-items{
     display: flex;
@@ -577,13 +577,13 @@ p {
 
 @media (max-width: 1200px) {
     .container {
-        max-width: 90%; /* Adjust for larger screens */
+        max-width: 90%;
     }
 }
 
 @media (max-width: 992px) {
     .container {
-        max-width: 95%; /* Adjust for medium screens */
+        max-width: 95%; 
     }
 
     /* .navbar {
@@ -591,7 +591,7 @@ p {
     } */
 
     .portfolio-items {
-        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        grid-template-columns: repeat(2, 1fr); 
     }
     .skills-items{
         width: fit-content;
@@ -609,39 +609,39 @@ p {
 
 @media (max-width: 768px) {
     .container {
-        padding: 0 10px; /* Adjust padding for smaller screens */
+        padding: 0 10px; 
     }
     h1 {
-        font-size: 2.5rem; /* Smaller heading for mobile */
+        font-size: 2.5rem; 
     }
 
     h2 {
-        font-size: 2rem; /* Adjust h2 size */
+        font-size: 2rem; 
     }
 
     h3 {
-        font-size: 1.75rem; /* Adjust h3 size */
+        font-size: 1.75rem; 
     }
 
     .nav-items {
         flex-direction: column; 
     }
     .box-1-container {
-        flex-direction: column; /* Stack content */
-        align-items: center; /* Center items */
+        flex-direction: column;
+        align-items: center;
     }
 
     .image-header {
-        width: 250px; /* Reduce image size */
+        width: 250px; 
         height: 250px;
     }
 
     .contact-form {
-        margin: 0 20px; /* Reduce margin for smaller screens */
+        margin: 0 20px;
     }
 
     .footer-item {
-        text-align: center; /* Center footer items */
+        text-align: center;
     }
     .btn-hidden{
         display: none;
@@ -650,14 +650,14 @@ p {
 
 @media (max-width: 672px) {
     .nav-link, .footer-link {
-        padding: 5px 10px; /* Adjust padding for smaller screens */
+        padding: 5px 10px; 
     }
     .skills-items {
-        grid-template-columns: repeat(1, 1fr); /* Single column */
+        grid-template-columns: repeat(1, 1fr);
     }
 
     .btn {
-        padding: 5px 10px; /* Adjust button padding */
+        padding: 5px 10px;
     }
 
     .description {
@@ -671,14 +671,14 @@ p {
     }
 
     .portfolio-box {
-        height: 120px; /* Reduce height */
+        height: 120px;
     }
 
     .portfolio-box h2 {
-        font-size: 20px; /* Smaller font size */
+        font-size: 20px; 
     }
 
     .portfolio-box .icon {
-        font-size: 24px; /* Smaller icon size */
+        font-size: 24px; 
     }
 }
