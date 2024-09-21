@@ -107,7 +107,7 @@ p {
 }
 .logo{
     width: 100px;
-    height: 100px;
+    height: 40px;
 }
 .footer-link, .nav-link{
     color: var(--secondery-color);
@@ -144,9 +144,10 @@ p {
     border: 2px solid var(--secondery-color);
 }
 
-.btn-primary:hover {
-    border-color: var(--third-color);
-    color: var(--third-color);
+.btn:hover {
+    border-color: #bd5200;
+    background-color: #bd5200;
+    font-weight: 500;
 }
 .btn-secondary {
     background: var(--third-color);
@@ -191,7 +192,6 @@ p {
     object-fit: cover;
     border-radius: 10px;
 }
-
 .btn-secondary:hover {
     background: #f4f4f4;
 }
@@ -256,6 +256,30 @@ p {
 .box-2{
     margin-bottom: 100px;
 }
+.box-2-container{
+    display: flex;
+    justify-content: space-between;
+}
+.image-about {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    clip-path: circle(50% at 50% 50%);
+    background-color: #c75600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 50px;
+    border-radius: 50%;
+    border: #1E1C1B 7px double ;
+}
+.image-about img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
 .h2-new{
     text-align: center;
     font-weight: 500;
@@ -266,6 +290,7 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 65%;
     gap: 20px;
 }
 .tab-items{
@@ -275,8 +300,9 @@ p {
     gap: 20px;
 }
 .tab-content{
+    width: 90%;
     display: flex;
-    gap: 100px;
+    justify-content: space-between;
 }
 .tab-content .content-left{
     width: 50%;
@@ -607,6 +633,16 @@ p {
     }
 }
 
+@media (max-width: 958px) {
+    /* .navbar {
+        flex-direction: column; 
+    } */
+    .box-2-container{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 0 10px; 
@@ -623,9 +659,9 @@ p {
         font-size: 1.75rem; 
     }
 
-    .nav-items {
+    /* .nav-items {
         flex-direction: column; 
-    }
+    } */
     .box-1-container {
         flex-direction: column;
         align-items: center;
@@ -655,7 +691,15 @@ p {
     .skills-items {
         grid-template-columns: repeat(1, 1fr);
     }
-
+    .portfolio-items {
+        grid-template-columns: repeat(1, 1fr); 
+    }
+    .tab-content .content-left{
+        width: 100%;
+    }
+    .tab-content .content-right{
+        display: none;
+    }
     .btn {
         padding: 5px 10px;
     }
@@ -680,5 +724,14 @@ p {
 
     .portfolio-box .icon {
         font-size: 24px; 
+    }
+}
+
+@media (max-width: 470px){
+    .nav-items {
+        flex-direction: column; 
+    }
+    .tab-items{
+        flex-direction: column; 
     }
 }
