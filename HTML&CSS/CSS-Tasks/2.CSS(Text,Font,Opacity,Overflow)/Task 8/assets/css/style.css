@@ -1,0 +1,36 @@
+.box-1 p{
+    border: 1px solid black;
+    background-color: chocolate;
+    overflow: visible;
+    height: 100px;
+    margin-bottom: 100px;
+}
+.box-2 p{
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    height: 100px;
+}
+
+.box-3 p{
+    border: 1px solid black;
+    background-color: cyan;
+    overflow: scroll;
+    width: 100%;
+    height: 100px;
+}
+.box-4 p{
+    border: 1px solid black;
+    background-color: blueviolet;
+    overflow: auto;
+    height: 100px;
+}
+.box-5 p{
+    border: 1px solid black;
+    background-color: green;
+    height: 100px;
+    white-space: nowrap; /* Prevent text wrapping, forcing horizontal overflow */
+    overflow-x: scroll;
+    overflow-y: auto;
+}

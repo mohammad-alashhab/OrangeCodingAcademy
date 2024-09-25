@@ -1,0 +1,15 @@
+.box-1 p{
+    width: max-content;
+    border: 2px ridge #ccc;
+    padding-right: 32px;
+}
+.box-2 p{
+    width: max-content;
+    border: 2px solid #000;
+    padding-right: 32px;
+}
+.box-3 p{
+    width: max-content;
+    border: 2px double #000;
+    padding-right: 20px;
+}

@@ -1,0 +1,18 @@
+.box-1{
+    width: 400px;
+    border: 3px solid #80005a;
+    margin: 0 auto;
+    padding: 0px 10px;
+    background-color: yellow;
+}
+.box-1 img{
+    width: 300px;
+    height: 100px;
+    border: 5px solid #80005a;
+}
+.box-1 p{
+    background-color: gold;
+    border: 5px dashed #80005a;
+    overflow-y: scroll;
+    height: 100px;
+}

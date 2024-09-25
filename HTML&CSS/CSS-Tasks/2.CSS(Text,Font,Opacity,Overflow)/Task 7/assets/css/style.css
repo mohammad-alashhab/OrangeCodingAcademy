@@ -1,0 +1,41 @@
+h1{
+    color: red;
+}
+.box-1 .p-2{
+    color: cadetblue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+}
+.box-1 .p-3{
+    background-color: aqua;
+    color: olivedrab;
+    text-align: center;
+    text-decoration: underline;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.box-2{
+}
+.box-2 .p-1{
+    color: pink;
+    text-shadow: 2px 2px 2px black;
+}
+.box-2 .p-2{
+    text-decoration: line-through;
+    text-align: end;
+    color: orange;
+    font-size: 20px;
+}
+.box-2 .p-3{
+    text-decoration: underline;
+    text-decoration-color: red;
+    color: yellow;
+    font-size: 20px;
+}
+footer a{
+    color: blue;
+    text-decoration: none;
+}
+footer span{
+    color: blue;
+}

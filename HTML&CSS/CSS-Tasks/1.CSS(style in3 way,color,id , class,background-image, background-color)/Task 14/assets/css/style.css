@@ -1,0 +1,7 @@
+body {
+    background-image: url('../../assets/images/OIP.png'), url('../../assets/images/OIP-2.png');
+    background-repeat: repeat-y, repeat-x;
+    background-position: left, top;
+    background-size: 200px, 200px;
+}
+

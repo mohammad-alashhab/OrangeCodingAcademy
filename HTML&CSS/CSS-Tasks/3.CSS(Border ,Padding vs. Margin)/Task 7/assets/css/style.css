@@ -1,0 +1,10 @@
+.box-1{
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
+.box-1 p{
+    border: 10px groove burlywood;
+    outline: 10px groove burlywood;
+    padding: 20px;
+}

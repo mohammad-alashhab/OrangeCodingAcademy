@@ -1,0 +1,29 @@
+table {
+    border-top: 3px solid gray;
+    border-left: 3px solid gray;
+    border-bottom: 3px solid black;
+    border-right: 3px solid black;
+    padding: 4px;
+    border-spacing: 4px; /* This will add spacing between the table cells */
+}
+
+td,th{
+    background-color: rgb(3, 180, 229);
+    border: 1px solid black;
+    padding: 4px;
+}
+select{
+    width: 100px;
+}
+tr .button{
+    padding: 4px 10px;
+}
+button[type="click-me"],button[type="reset"],button[type="submit"]{
+    width: 120px;
+    height: 40px;
+}
+#header{
+    background-color: rgb(250, 250, 186);
+    color: red;
+    font-size: 25px;
+}

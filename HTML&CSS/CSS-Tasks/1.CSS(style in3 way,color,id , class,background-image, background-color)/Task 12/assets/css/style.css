@@ -1,0 +1,7 @@
+.box-1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background: linear-gradient(to bottom left,  #1f1f7a 0%, #80005a 50%,  #d4ff00 50%, #05c605 100%);
+}

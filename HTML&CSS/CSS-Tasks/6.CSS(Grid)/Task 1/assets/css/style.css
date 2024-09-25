@@ -1,0 +1,14 @@
+body{
+    background-color: rgb(125, 12, 230);
+}
+.box-1{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.box-1 div{
+    height: 125px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}

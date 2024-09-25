@@ -1,0 +1,37 @@
+.container{
+    width: 400px;
+    margin: 0px auto;
+}
+.box-1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.box-2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.box-3{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.box-1 p{
+    background-color: #007179;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+}
+.box-2 p{
+    background-color: #007179;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+}
+.box-3 p{
+    background-color: #007179;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+}

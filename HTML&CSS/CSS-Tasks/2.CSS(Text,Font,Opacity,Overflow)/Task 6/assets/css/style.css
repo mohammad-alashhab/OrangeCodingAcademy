@@ -1,0 +1,28 @@
+.box-1{
+    opacity: 100%;
+    background-color: red;
+    padding: 10px;
+    text-align: center;
+
+}
+.box-2{
+    opacity: 50%;
+    background-color: red;
+    padding: 10px;
+    text-align: center;
+
+}
+.box-3{
+    opacity: 25%;
+    background-color: red;
+    padding: 10px;
+    text-align: center;
+
+}
+.box-4{
+    opacity: 10%; /* --> opacity: 0%; */
+    background-color: red;
+    padding: 10px;
+    text-align: center;
+
+}

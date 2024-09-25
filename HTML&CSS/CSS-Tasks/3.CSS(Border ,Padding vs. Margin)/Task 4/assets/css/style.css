@@ -1,0 +1,5 @@
+.box-2 p{
+    width: 500px;
+    padding: 20px 10px;
+    box-shadow: 5px 7px 5px 5px #000; 
+}

@@ -1,0 +1,21 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: aqua;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.nav-items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+.nav-link{
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+}

@@ -1,0 +1,12 @@
+.box-1{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100;
+    border-top: 50px solid skyblue;
+    border-bottom: 50px solid rgb(255, 192, 239);
+}
+
+p, button{
+    margin: 20px 0px;
+}

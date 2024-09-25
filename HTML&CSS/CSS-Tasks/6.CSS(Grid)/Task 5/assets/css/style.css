@@ -1,0 +1,40 @@
+#cssportal-grid {
+	display: grid;
+	grid-template-rows: repeat(6, 1fr);
+	grid-template-columns: repeat(6, 1fr);
+	gap: 5px;
+	width: 100%;
+	height: 100%;
+}
+#div1 {
+	height: 100px;
+	grid-area: 1 / 1 / 5 / 4;
+	background-color: rgba(104,203,1, 0.5);
+	border-radius: 10px;
+}
+#div2 {
+	
+	grid-area: 5 / 1 / 7 / 4;
+	background-color: rgba(49,103,110, 0.5);
+	border-radius: 10px;
+}
+#div3 {
+	grid-area: 1 / 4 / 3 / 7;
+	background-color: rgba(202,6,3, 0.5);
+	border-radius: 10px;
+}
+#div4 {
+	grid-area: 3 / 4 / 7 / 6;
+	background-color: rgba(127,116,149, 0.5);
+	border-radius: 10px;
+}
+#div5 {
+	grid-area: 3 / 6 / 5 / 7;
+	background-color: rgba(123,40,103, 0.5);
+	border-radius: 10px;
+}
+#div6 {
+	grid-area: 5 / 6 / 7 / 7;
+	background-color: rgba(186,199,220, 0.5);
+	border-radius: 10px;
+}

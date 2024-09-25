@@ -1,0 +1,42 @@
+.box-1{
+    width: 100px;
+    height: 75px;
+    background-color: blue;
+    border-radius: 5px;
+}
+.box-2{
+    width: 100px;
+    height: 75px;
+    background-color: green;
+    border-radius: 5px;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+}
+.box-3{
+    width: 100px;
+    height: 75px;
+    background-color: red;
+    border-radius: 5px;
+    position: absolute;
+    top: 75px;
+    left: 35px;
+}
+.box-4{
+    width: 100px;
+    height: 75px;
+    background-color: gold;
+    border-radius: 5px;
+    position: absolute;
+    top: 110px;
+    left: 50px;
+}
+.box-5{
+    width: 100px;
+    height: 75px;
+    background-color: blueviolet;
+    border-radius: 5px;
+    position: absolute;
+    top: 145px;
+    left: 65px;
+}

@@ -1,0 +1,31 @@
+.img-1{
+    width: 200px;
+    height: 150px;
+    border-radius: 20px;
+    position: absolute;
+    z-index: 1;
+}
+.img-2{
+    width: 200px;
+    height: 150px;
+    border-radius: 20px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.img-3{
+    width: 200px;
+    height: 150px;
+    border-radius: 20px;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+.img-4{
+    width: 200px;
+    height: 150px;
+    border-radius: 20px;
+    position: absolute;
+    top: 60px;
+    left: 60px;
+}

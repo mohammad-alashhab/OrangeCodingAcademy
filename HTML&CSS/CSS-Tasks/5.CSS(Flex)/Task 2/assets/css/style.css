@@ -1,0 +1,14 @@
+.content{
+    display: flex;
+    justify-content: space-between;
+}
+.nav-items{
+    display: flex;
+    gap: 50px;
+    list-style: none;
+    margin-right: 100px;
+}
+.nav-link{
+    text-decoration: none;
+    color: #000;
+}

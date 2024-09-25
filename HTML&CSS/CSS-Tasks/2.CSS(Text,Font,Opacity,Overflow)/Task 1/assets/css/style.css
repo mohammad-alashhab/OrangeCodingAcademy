@@ -1,0 +1,18 @@
+h1 {
+    text-decoration: overline;
+    text-decoration-color: green;
+}
+
+h2 {
+    text-decoration: line-through;
+    text-decoration-color: gray;
+}
+
+h3 {
+    text-decoration: underline;
+    text-decoration-color: blueviolet;
+}
+p.ex {
+    text-decoration: overline underline;
+    text-decoration-color: blue;
+}
