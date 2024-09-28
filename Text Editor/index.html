@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, CSS, JS, Coding Academy, Orange">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>note</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="text-h1">Dom Task</h1>
+        </div>
+        <div class="options">
+            <div class="option-items">
+            <button type="button" class="btn btn-primary" id="bold" onclick="Bold()">Bold</button>
+            <button type="button" class="btn btn-primary" onclick="Italic()">Italic</button>
+            <button type="button" class="btn btn-primary" onclick="Underline()">Underline</button>
+            <button type="button" class="btn btn-primary" onclick="Textleft()"><i class="fa-solid fa-align-left"></i></button>
+            <button type="button" class="btn btn-primary" onclick="Textcenter()"><i class="fa-solid fa-align-center"></i></button>
+            <button type="button" class="btn btn-primary" onclick="Textright()"><i class="fa-solid fa-align-right"></i></buttonn>
+            <button type="button" class="btn btn-primary" onclick="Upper()">Upper Case</button>
+            <button type="button" class="btn btn-primary" onclick="Lower()">Lower Case</button>
+            <button type="button" class="btn btn-primary" onclick="Capitaliz()">Capitaliz</button>
+            <button type="button" class="btn btn-primary" onclick="ClearText()">Clear Text</button>
+            <div class="input-wrapper">
+                <input type="color" id="fontColor" class="adv-option-button" oninput="ChangeColor()">
+                <i class="fa-solid fa-paintbrush"></i>
+            </div>
+            <div class="input-wrapper">
+                <input type="color" id="backgroundColor" class="adv-option-button" oninput="ChangeBackgroundColor()">
+                <i class="fa-solid fa-fill"></i>
+            </div>
+            <!-- <button type="button" class="btn btn-primary" onclick="ChangeBackgroundColor()">BackgroundColor</button> -->
+            <!-- <button type="button" class="btn btn-primary" onclick="ChangeColor()">Color</button> -->
+            <!-- <button type="button" class="btn btn-primary" onclick="IncreaseFontSize()">FontSize</button> -->
+            <!-- <button type="button" class="btn btn-primary" onclick="DecreaseFontSize()">DecreaseFontSize</button> -->
+            <!-- <button type="button" class="btn btn-primary" onclick="ChangeFontFamily()">FontFamily</button> -->
+            </div>
+            <div class="option-items">
+                <div class="font-size input-wrapper">
+                    <input type="number" id="fontSize" class="adv-option-button adv-font-size" value="16" oninput="ChangeFontSize()">
+                    <i class="fa-solid fa-text-height"></i>
+                </div>
+                <select name="" id="fontFamily" class="adv-option-button" onchange="ChangeFontFamily()">
+                    <option value="Arial">Arial</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Lucida Console">Lucida Console</option>
+                    <option value="Courier">Courier</option>
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                    <option value="Symbol">Symbol</option>
+                    <option value="Zapf Dingbats">Zapf Dingbats</option>
+                    <option value="Trebuchet MS">Trebuchet MS</option>
+                    <option value="Arial Black">Arial Black</option>
+                </select>
+                <button type="button" class="btn btn-primary" onclick="Print()"><i class="fa-solid fa-print"></i> Print Text</button>    
+            </div>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control note-box" placeholder="Enter to Write" id="myText" ></textarea>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
