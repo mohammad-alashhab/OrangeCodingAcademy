@@ -94,16 +94,28 @@ document.addEventListener("DOMContentLoaded", () => {
           const currentDate = new Date();
           const [expMonth, expYear] = expDate.split("/").map(Number);
           const expiryDate = new Date(`20${expYear}`, expMonth - 1);
-  
+      
+          // Validate format MM/YY
           if (!/^\d{2}\/\d{2}$/.test(expDate)) {
-            alert("Expiration date must be in MM/YY format.");
-            return false;
-          } else if (expiryDate <= currentDate) {
-            alert("Expiration date is invalid or expired.");
-            return false;
+              alert("Expiration date must be in MM/YY format.");
+              return false;
           }
+      
+          // Validate month is between 01 and 12
+          if (expMonth < 1 || expMonth > 12) {
+              alert("Expiration month must be between 01 and 12.");
+              return false;
+          }
+      
+          // Validate expiration date is in the future
+          if (expiryDate <= currentDate) {
+              alert("Expiration date is invalid or expired.");
+              return false;
+          }
+      
           return true;
-        }
+      }
+      
   
         // Function to validate CVC
         function validateCVC() {
