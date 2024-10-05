@@ -1,0 +1,38 @@
+.cart-area {
+    padding: 40px 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.item-details h4, .item-details p {
+    margin: 5px 0;
+}
+
+.item-actions button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.remove-btn {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+}
+
+#cart-total {
+    text-align: right;
+    margin-top: 20px;
+}
