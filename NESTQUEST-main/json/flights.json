@@ -133,53 +133,5 @@
     }
   ],
   "bookings": [
-    {
-      "id": "1727949969406",
-      "destination": "Los Angeles",
-      "price": "199",
-      "fullName": "dffdsfd",
-      "email": "uig19@gmail.com",
-      "creditCard": "2323232323121212",
-      "expDate": "12/24",
-      "cvc": "123",
-      "bookingDate": "2024-10-03",
-      "bookingTime": "22:05"
-    },
-    {
-      "id": "1727954250943",
-      "destination": "Paris",
-      "price": "2499",
-      "fullName": "mohammad",
-      "email": "uig@gmail.com",
-      "creditCard": "3434343434221212",
-      "expDate": "11/25",
-      "cvc": "222",
-      "bookingDate": "2024-10-10",
-      "bookingTime": "14:17"
-    },
-    {
-      "id": "1727956200057",
-      "destination": "Los Angeles",
-      "price": "199",
-      "fullName": "mohammad",
-      "email": "uig@gmail.com",
-      "creditCard": "3434343434221212",
-      "expDate": "11/25",
-      "cvc": "222",
-      "bookingDate": "2024-10-10",
-      "bookingTime": "14:17"
-    },
-    {
-      "id": "1728147322814",
-      "destination": "Los Angeles",
-      "price": "199",
-      "fullName": "t",
-      "email": "moh.t.alashhab@gmail.com",
-      "creditCard": "1111111111111111",
-      "expDate": "01/25",
-      "cvc": "123",
-      "bookingDate": "2024-10-05",
-      "bookingTime": "22:54"
-    }
   ]
 }

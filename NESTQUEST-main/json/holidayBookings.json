@@ -114,6 +114,13 @@
       "price": "400.00",
       "hotelName": "dsadsad",
       "photo": "img/holeday/sharm-el-sheikh.jpg"
+    },
+    {
+      "id": "wf57y",
+      "country": "Istanbul",
+      "price": "400.00",
+      "hotelName": "tfdfddfd",
+      "photo": "img/holeday/istanbul.jpg"
     }
   ]
 }
