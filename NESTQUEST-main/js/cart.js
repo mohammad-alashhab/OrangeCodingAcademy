@@ -44,18 +44,21 @@ function renderCart(bookings) {
 
 // Function to remove a booking
 function removeBooking(id) {
-    fetch(`http://localhost:3002/bookings/${id}`, {
-        method: 'DELETE'
-    })
-    .then(response => {
-        if (response.ok) {
-            // Re-fetch the updated data and re-render the cart
-            fetchBookings();
-        } else {
-            console.error('Failed to delete the booking.');
-        }
-    })
-    .catch(error => console.error('Error removing booking:', error));
+    // Show a confirmation dialog before proceeding with the deletion
+    if (confirm('Are you sure you want to delete this booking?')) {
+        fetch(`http://localhost:3002/bookings/${id}`, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (response.ok) {
+                // Re-fetch the updated data and re-render the cart
+                fetchBookings();
+            } else {
+                console.error('Failed to delete the booking.');
+            }
+        })
+        .catch(error => console.error('Error removing booking:', error));
+    }
 }
 
 
