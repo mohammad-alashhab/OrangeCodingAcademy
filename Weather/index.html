@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, CSS, JS, Weather API Demo">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Weather API</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather</h1>
+
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Enter city name" />
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <div class="unit-switch" id="unitSwitch" style="display: none;">
+            <input type="radio" id="celsius" name="unit" value="metric" checked>
+            <label for="celsius">Celsius</label>
+
+            <input type="radio" id="fahrenheit" name="unit" value="imperial">
+            <label for="fahrenheit">Fahrenheit</label>
+        </div>
+
+        <div class="box-1" id="weatherBox" style="display: none;">
+            <!-- Weather data will be displayed here -->
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

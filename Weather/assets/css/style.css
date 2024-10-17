@@ -1,0 +1,48 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.box-1 {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    padding: 10px;
+    width: 200px;
+    margin-right: 10px;
+}
+
+.search-box button {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.unit-switch {
+    margin-bottom: 20px;
+}
+
+.unit-switch input {
+    margin: 0 5px;
+}

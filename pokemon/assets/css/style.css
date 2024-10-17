@@ -1,0 +1,128 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+:root{
+    --main-color: #588D11;
+    --secondery-color: #434342;
+    --text-color: #333;
+}
+
+/*----------- Gerneral -------------*/
+
+* {
+    font-family: "Work Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    margin: 10px 0;
+}
+
+h1 {
+    font-size: 2.986rem;
+}
+
+h2 {
+    font-size: 2.488rem;
+}
+
+h3 {
+    font-size: 2.074rem;
+}
+
+h4 {
+    font-size: 1.728rem;
+}
+
+h5 {
+    font-size: 1.44rem;
+}
+
+h6 {
+    font-size: 1.2rem;
+}
+
+p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.small {
+    font-size: 0.8rem;
+}
+
+/*----------- Container -------------*/
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hr-1{
+    margin: 20px 0px;
+}
+
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    width: 100%;
+    margin: 0 auto
+}
+
+.pokemon-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.pokemon-card img {
+    width: 100px;
+    height: 100px;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .hero {
+        background-size: 100% 100%;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
