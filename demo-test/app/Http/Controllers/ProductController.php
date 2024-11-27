@@ -6,6 +6,9 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\AuditLog;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -20,7 +23,7 @@ class ProductController extends Controller
         $products = Product::query()
             ->when($search, function ($query) use ($search) {
                 $query->where('name', 'like', "%{$search}%")
-                ->orWhere('description', 'like', "%{$search}%");
+                    ->orWhere('description', 'like', "%{$search}%");
             })
             ->when($brand, function ($query) use ($brand) {
                 $query->whereHas('brand', function ($query) use ($brand) {
@@ -32,6 +35,7 @@ class ProductController extends Controller
                     $query->where('name', 'like', "%{$category}%");
                 });
             })
+            ->orderBy('id', 'asc')
             ->with('images', 'category', 'brand') // Eager load product images, categories, and brands
             ->paginate(10);
 
@@ -48,7 +52,7 @@ class ProductController extends Controller
     {
         $categories = Category::all(); // Fetch all categories
         $brands = Brand::all(); // Fetch all brands
-        return view('admin.products.create', compact( 'categories', 'brands'));
+        return view('admin.products.create', compact('categories', 'brands'));
     }
 
     // Store a new product
@@ -68,25 +72,37 @@ class ProductController extends Controller
 
         $product = Product::create($validated);
 
-        $productImages = new ProductImage();
-        $productImages->product_id = $product->id;
+        $imageData = ['product_id' => $product->id];
 
-        if ($request->hasFile('front_img')) {
-            $productImages->front_img = $request->file('front_img')->store('product_images');
+        foreach (['front_img', 'back_img', 'side_img'] as $key) {
+            if ($request->hasFile($key)) {
+                $imageData[$key] = $request->file($key)->storeAs(
+                    'product_images',
+                    time() . '_' . $request->file($key)->getClientOriginalName(),
+                    'public'
+                );
+            }
         }
 
-        if ($request->hasFile('back_img')) {
-            $productImages->back_img = $request->file('back_img')->store('product_images');
-        }
+        ProductImage::create($imageData);
 
-        if ($request->hasFile('side_img')) {
-            $productImages->side_img = $request->file('side_img')->store('product_images');
-        }
+        // Link the stock with the inventory table
+        DB::table('inventory')->insert([
+            'product_id' => $product->id,
+            'quantity' => $validated['stock'],
+            'updated_at' => now(),
+        ]);
 
-        $productImages->save();
+        // Log the creation action
+        AuditLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'create',
+            'details' => 'Created user: ' . $product->name,
+        ]);
 
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
+
 
     // Show form to edit a product
     public function edit($id)
@@ -115,32 +131,74 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        $productImages = $product->images;
-
-        if ($request->hasFile('front_img')) {
-            $productImages->front_img = $request->file('front_img')->store('product_images');
+        $imageData = $product->images ? $product->images->toArray() : [];
+        foreach (['front_img', 'back_img', 'side_img'] as $key) {
+            if ($request->hasFile($key)) {
+                if (isset($imageData[$key])) {
+                    Storage::delete($imageData[$key]); // Remove old image
+                }
+                $imageData[$key] = $request->file($key)->storeAs(
+                    'product_images',
+                    time() . '_' . $request->file($key)->getClientOriginalName(),
+                    'public'
+                );
+            }
         }
 
-        if ($request->hasFile('back_img')) {
-            $productImages->back_img = $request->file('back_img')->store('product_images');
-        }
+        ProductImage::updateOrCreate(['product_id' => $product->id], $imageData);
 
-        if ($request->hasFile('side_img')) {
-            $productImages->side_img = $request->file('side_img')->store('product_images');
-        }
+        // Update the inventory table
+        DB::table('inventory')
+        ->where('product_id', $product->id)
+        ->update([
+            'quantity' => $validated['stock'],
+            'updated_at' => now(),
+        ]);
 
-        $productImages->save();
+        // Log the creation action
+        AuditLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'update',
+            'details' => 'Update Product: ' . $product->name,
+        ]);
 
         return redirect()->route('products.index')->with('success', 'Product updated successfully!');
     }
 
+
     // Delete a product
     public function destroy(Product $product)
     {
-        $product->images->delete(); // Delete associated images
-        $product->delete();
+        // Check if the product has associated images
+        if ($product->images) {
+            foreach ($product->images as $image) { // Loop through the collection
+                foreach (['front_img', 'back_img', 'side_img'] as $key) {
+                    if (!empty($image->$key)) { // Check if the image exists
+                        Storage::delete($image->$key); // Delete the image file
+                    }
+                }
+                $product->images->delete(); // Delete the image record from the database
+            }
+        }
+
+        // Delete the inventory record
+        DB::table('inventory')->where('product_id', $product->id)->delete();
+
+        $product->delete(); // Delete the product itself
+
+        // Log the creation action
+        AuditLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'delete',
+            'details' => 'Deleted Product: ' . $product->name,
+        ]);
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
     }
 
+    public function show($id)
+    {
+        $product = Product::with(['category', 'brand', 'images'])->findOrFail($id);
+        return view('admin.products.show', compact('product'));
+    }
 }

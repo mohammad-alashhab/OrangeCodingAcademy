@@ -22,7 +22,7 @@
                     </div>
                     @endif
 
-                    <form action="{{ route('users.store') }}" method="POST">
+                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <!-- Name Field -->
@@ -58,14 +58,39 @@
                         <!-- Role Field -->
                         <div class="mb-4">
                             <label for="role_id" class="block text-gray-700 dark:text-gray-300">Role</label>
-                            <select name="role_id" id="role_id" class="w-full rounded-md shadow-sm" required>
+                            <select
+                                name="role_id"
+                                id="role_id"
+                                class="w-full rounded-md shadow-sm"
+                                required
+                                @if(auth()->user()->role_id == 2) disabled @endif
+                                >
+                                @if(auth()->user()->role_id == 2)
+                                <!-- Default 'Customer' role selected for Admin -->
+                                <option value="3" selected>Customer</option>
+                                @else
+                                <!-- For Super Admin, allow selection of any role -->
                                 <option value="" disabled selected>Select a Role</option>
                                 @foreach ($roles as $role)
-                                <option value="{{ $role->id }}" {{ old('role_id') == $role->id ? 'selected' : '' }}>
+                                <option value="{{ $role->id }}" {{ old('role_id', $user->role_id ?? '') == $role->id ? 'selected' : '' }}>
                                     {{ $role->name }}
                                 </option>
                                 @endforeach
+                                @endif
                             </select>
+
+                            <!-- Hidden Input to Submit 'role_id' if Dropdown is Disabled -->
+                            @if(auth()->user()->role_id == 2)
+                            <input type="hidden" name="role_id" value="3">
+                            @endif
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="image" class="block text-gray-700">{{ __('Image') }}</label>
+                            <input type="file" name="image" id="image" class="mt-1">
+                            @error('image')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <!-- Submit Button -->

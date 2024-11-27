@@ -31,7 +31,7 @@ class RedirectIfAuthenticatedWithRole
             // Check the user role and restrict routes accordingly
             $userRole = $user->role_id;
 
-            if ($userRole === 2) { // Admin Role
+            if ($userRole === 2 || $userRole === 1) { // Admin Role
                 // Allow only admin routes
                 if (
                     !$request->routeIs('dashboard*') &&
@@ -43,13 +43,16 @@ class RedirectIfAuthenticatedWithRole
                     !$request->routeIs('discounts.*') &&
                     !$request->routeIs('coupons.*') &&
                     !$request->routeIs('reviews.*') &&
+                    !$request->routeIs('bookings.*') &&
+                    !$request->routeIs('services.*') &&
+                    !$request->routeIs('contacts.*') &&
                     !$request->routeIs('profile.*')
                 ) {
                     return redirect()->route('dashboard');
                 }
             }
 
-            if ($userRole === 3) { // Normal User Role
+            if ($userRole === 3) { // Customer Role
                 // Allow only the welcome page
                 if (!$request->routeIs('welcome')) {
                     return redirect()->route('welcome');

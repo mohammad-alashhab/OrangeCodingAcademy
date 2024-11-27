@@ -1,7 +1,7 @@
 <aside id="sidebar"
     class="fixed left-0 top-0 h-full w-64 bg-white text-gray-900 dark:bg-gray-800 dark:text-white transform -translate-x-full transition-transform duration-300 shadow-lg z-50 overflow-y-auto">
     <!-- Logo Section -->
-    <div class="flex items-center justify-between px-4 py-6 border-b border-gray-200 dark:border-gray-700">
+    <div class="flex items-center justify-between px-4 py-6">
         <a href="{{ route('dashboard') }}" class="flex items-center space-x-3 text-xl font-bold text-gray-900 dark:text-gray-200 hover:text-black dark:hover:text-white">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18M3 9h18M9 21h6" />
@@ -61,33 +61,19 @@
             </svg>
             Coupons
         </a>
-        <a href="{{ route('orders.index') }}"
+        <a href="{{ route('discounts.index') }}"
             class="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
             Discount
         </a>
-        <a href="{{ route('orders.index') }}"
+        <a href="{{ route('reviews.index') }}"
             class="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
             Reviews
-        </a>
-        <a href="{{ route('orders.index') }}"
-            class="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Bookings
-        </a>
-        <a href="{{ route('orders.index') }}"
-            class="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Services
         </a>
         <a href="{{ route('brands.index') }}"
             class="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-200">
@@ -96,7 +82,7 @@
             </svg>
             Brands
         </a>
-        <a href="{{ route('orders.index') }}"
+        <a href="{{ route('contacts.index') }}"
             class="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />

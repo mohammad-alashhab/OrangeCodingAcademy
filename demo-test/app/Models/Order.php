@@ -11,7 +11,6 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
-        'total_price',
         'status_id',
         'shipping_address_id',
         'billing_address_id',
@@ -42,5 +41,13 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    // Accessor for dynamically calculating total price
+    public function getTotalPriceAttribute()
+    {
+        return $this->items->sum(function ($item) {
+            return $item->quantity * $item->price;
+        });
     }
 }

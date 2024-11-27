@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form method="POST" action="{{ route('users.update', $user->id) }}">
+                    <form method="POST" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -35,6 +35,18 @@
                                 <option value="2" {{ $user->role_id == 2 ? 'selected' : '' }}>Admin</option>
                                 <option value="3" {{ $user->role_id == 3 ? 'selected' : '' }}>User</option>
                             </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="image" class="block text-gray-700">{{ __('Image') }}</label>
+                            <input type="file" name="image" id="image" class="mt-1">
+                            <p class="text-gray-500 text-sm">{{ __('Leave empty to keep the current image') }}</p>
+                            @if ($user->image)
+                            <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}" class="w-16 h-16 mt-2">
+                            @endif
+                            @error('image')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="mt-4">

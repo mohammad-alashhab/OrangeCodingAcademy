@@ -16,4 +16,8 @@ class Status extends Model
     {
         return $this->hasMany(Order::class, 'status_id');
     }
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class, 'status_id');
+    }
 }

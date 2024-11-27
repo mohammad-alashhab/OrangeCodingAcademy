@@ -16,6 +16,7 @@ class CouponController extends Controller
             ->when($search, function ($query) use ($search) {
                 $query->where('code', 'like', "%{$search}%");
             })
+            ->orderBy('id', 'asc')
             ->paginate(10);
 
         return view('admin.coupons.index', compact('coupons'));

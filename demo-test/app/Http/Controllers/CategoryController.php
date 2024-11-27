@@ -18,6 +18,7 @@ class CategoryController extends Controller
                 $query->where('name', 'like', "%{$search}%")
                     ->orWhere('description', 'like', "%{$search}%");
             })
+            ->orderBy('id', 'asc')
             ->paginate(10);
 
         return view('admin.categories.index', compact('categories'));

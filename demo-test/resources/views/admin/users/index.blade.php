@@ -36,7 +36,9 @@
                                 <th class="border px-4 py-2">Name</th>
                                 <th class="border px-4 py-2">Email</th>
                                 <th class="border px-4 py-2">Phone</th>
+                                @if (auth()->user()->role_id != 2) <!-- Check if logged-in user is NOT admin -->
                                 <th class="border px-4 py-2">Role</th>
+                                @endif
                                 <th class="border px-4 py-2">Actions</th>
                             </tr>
                         </thead>
@@ -47,7 +49,9 @@
                                 <td class="border px-4 py-2">{{ $user->name }}</td>
                                 <td class="border px-4 py-2">{{ $user->email }}</td>
                                 <td class="border px-4 py-2">{{ $user->phone }}</td>
+                                @if (auth()->user()->role_id != 2) <!-- Check if logged-in user is NOT admin -->
                                 <td class="border px-4 py-2">{{ $user->role->name ?? 'N/A' }}</td>
+                                @endif
                                 <td class="border px-4 py-2">
                                     <a href="{{ route('users.edit', $user->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded">
                                         Edit
@@ -59,7 +63,9 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="6" class="border px-4 py-2 text-center">No users found.</td>
+                                <td colspan="{{ auth()->user()->role_id == 2 ? 5 : 6 }}" class="border px-4 py-2 text-center">
+                                    No users found.
+                                </td>
                             </tr>
                             @endforelse
                         </tbody>

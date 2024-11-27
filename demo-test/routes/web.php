@@ -8,6 +8,8 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DiscountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,6 +65,7 @@ Route::middleware(['auth', 'auth.role'])->group(function () {
             Route::post('/', [ProductController::class, 'store'])->name('products.store'); // Create product
             Route::put('/{product}', [ProductController::class, 'update'])->name('products.update'); // Update product
             Route::delete('/{product}', [ProductController::class, 'destroy'])->name('products.destroy'); // Delete product
+            Route::get('/{product}', [ProductController::class, 'show'])->name('products.show'); // View product details
         });
         // Categories Routes (CRUD)
         Route::prefix('categories')->group(function () {
@@ -95,9 +98,27 @@ Route::middleware(['auth', 'auth.role'])->group(function () {
         // Reviews Routes
         Route::prefix('reviews')->group(function () {
             Route::get('/', [ReviewController::class, 'index'])->name('reviews.index'); // View all reviews
-            Route::post('/store/{product}', [ReviewController::class,'store'])->name('reviews.store'); // Store review
+            Route::get('/{id}', [ReviewController::class, 'show'])->name('reviews.show');
+            Route::post('/toggle-visibility/{id}', [ReviewController::class, 'toggleVisibility'])->name('reviews.toggleVisibility');
         });
-        
+
+        // Contact Routes
+        Route::prefix('contacts')->group(function () {
+            Route::get('/', [ContactController::class, 'index'])->name('contacts.index'); // View all reviews
+            Route::get('/{id}', [ContactController::class, 'show'])->name('contacts.show');
+            Route::post('/{id}/status', [ContactController::class, 'updateStatus'])->name('contacts.updateStatus');
+        });
+
+        // Discount Routes
+        Route::prefix('discounts')->group(function () {
+            Route::get('/', [DiscountController::class, 'index'])->name('discounts.index'); // View all reviews
+            Route::get('/create', [DiscountController::class, 'create'])->name('discounts.create'); // Add brands
+            Route::get('/edit/{discount}', [DiscountController::class, 'edit'])->name('discounts.edit'); // Edit brands
+            Route::post('/', [DiscountController::class, 'store'])->name('discounts.store'); // Create brands
+            Route::put('/{discount}', [DiscountController::class, 'update'])->name('discounts.update'); // Update brands
+            Route::post('/{discount}/toggle-status', [DiscountController::class, 'toggleStatus'])->name('discounts.toggleStatus');
+            Route::delete('/{discount}', [DiscountController::class, 'destroy'])->name('discounts.destroy'); // Delete brands
+        });
     });
 });
 
@@ -107,4 +128,4 @@ Route::middleware(['auth', 'auth.role'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

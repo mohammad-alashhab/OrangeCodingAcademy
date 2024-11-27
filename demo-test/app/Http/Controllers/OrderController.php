@@ -28,6 +28,7 @@ class OrderController extends Controller
                 ->orWhere('email', 'like', "%{$search}%");
             });
         })
+        ->orderBy('id', 'asc')
         ->with(['user', 'status', 'items.product'])
         ->paginate(10);
 

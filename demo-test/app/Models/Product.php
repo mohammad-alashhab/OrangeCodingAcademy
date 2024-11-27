@@ -20,7 +20,7 @@ class Product extends Model
 
     public function images()
     {
-        return $this->hasOne(ProductImage::class);
+        return $this->hasOne(ProductImage::class, 'product_id');
     }
     // Define the relationship to Category
     public function category()
@@ -30,5 +30,10 @@ class Product extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+    // Relationship to Reviews
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'product_id');
     }
 }
