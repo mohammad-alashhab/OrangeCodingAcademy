@@ -70,17 +70,21 @@ class ProductController extends Controller
             'side_img' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
+        // Save original price before discount
         $product = Product::create($validated);
 
-        $imageData = ['product_id' => $product->id];
+        // Set original price (before discount)
+        $product->update(['original_price' => $product->price]);
 
+        // Handle images
+        $imageData = ['product_id' => $product->id];
         foreach (['front_img', 'back_img', 'side_img'] as $key) {
             if ($request->hasFile($key)) {
                 $imageData[$key] = $request->file($key)->storeAs(
-                    'product_images',
-                    time() . '_' . $request->file($key)->getClientOriginalName(),
-                    'public'
-                );
+                        'product_images',
+                        time() . '_' . $request->file($key)->getClientOriginalName(),
+                        'public'
+                    );
             }
         }
 
@@ -97,7 +101,7 @@ class ProductController extends Controller
         AuditLog::create([
             'user_id' => auth()->id(),
             'action' => 'create',
-            'details' => 'Created user: ' . $product->name,
+            'details' => 'Created product: ' . $product->name,
         ]);
 
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
@@ -107,30 +111,55 @@ class ProductController extends Controller
     // Show form to edit a product
     public function edit($id)
     {
-        $product = Product::with('images', 'category', 'brand')->findOrFail($id);
-        $categories = Category::all(); // Fetch all categories
-        $brands = Brand::all(); // Fetch all brands
-        return view('admin.products.edit', compact('product', 'categories', 'brands'));
+        // Fetch the product with its associated images, category, and brand
+        $product = Product::with('images', 'category', 'brand', 'discounts')->findOrFail($id);
+
+        // Fetch all categories and brands for the dropdown selection
+        $categories = Category::all();
+        $brands = Brand::all();
+
+        // Check if the product has an active discount
+        $activeDiscount = $product->discounts()->where('is_active', true)->exists();
+
+        // Pass the product data and activeDiscount flag to the view
+        return view('admin.products.edit', compact('product', 'categories', 'brands', 'activeDiscount'));
     }
 
 
-    // Update a product
+
     public function update(Request $request, Product $product)
     {
+        // Check if discount is active, and handle accordingly
+        $isDiscountActive = $product->discounts()->where('is_active', true)->exists();
+
+        // Validate request
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
             'brand_id' => 'required|exists:brands,id',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
+            'price' => $isDiscountActive ? 'nullable|numeric' : 'required|numeric',
+            'stock' => 'required|integer', // Ensure stock is validated
             'front_img' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'back_img' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'side_img' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
+        // If the price has changed and no discount is applied
+        if ($product->price != $validated['price']) {
+            // If discount is not applied, update original_price
+            if (!$request->has('discount')) {
+                $product->update(['original_price' => $validated['price']]);
+            } else {
+                // Keep the original price unchanged
+                $validated['price'] = $product->original_price - ($product->original_price * $request->input('discount') / 100);
+            }
+        }
+
+        // Update product information
         $product->update($validated);
 
+        // Handle images
         $imageData = $product->images ? $product->images->toArray() : [];
         foreach (['front_img', 'back_img', 'side_img'] as $key) {
             if ($request->hasFile($key)) {
@@ -149,21 +178,24 @@ class ProductController extends Controller
 
         // Update the inventory table
         DB::table('inventory')
-        ->where('product_id', $product->id)
-        ->update([
-            'quantity' => $validated['stock'],
-            'updated_at' => now(),
-        ]);
+            ->where('product_id', $product->id)
+            ->update([
+                'quantity' => $validated['stock'],  // Ensure stock is updated
+                'updated_at' => now(),
+            ]);
 
-        // Log the creation action
+        // Log the update action
         AuditLog::create([
             'user_id' => auth()->id(),
             'action' => 'update',
-            'details' => 'Update Product: ' . $product->name,
+            'details' => 'Updated product: ' . $product->name,
         ]);
 
         return redirect()->route('products.index')->with('success', 'Product updated successfully!');
     }
+
+
+
 
 
     // Delete a product
@@ -201,4 +233,5 @@ class ProductController extends Controller
         $product = Product::with(['category', 'brand', 'images'])->findOrFail($id);
         return view('admin.products.show', compact('product'));
     }
+
 }

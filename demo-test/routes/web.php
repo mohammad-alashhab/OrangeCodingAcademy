@@ -59,14 +59,15 @@ Route::middleware(['auth', 'auth.role'])->group(function () {
 
         // Products Routes (CRUD)
         Route::prefix('products')->group(function () {
-            Route::get('/', [ProductController::class, 'index'])->name('products.index'); // View all products
-            Route::get('/create', [ProductController::class, 'create'])->name('products.create'); // Add product
-            Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('products.edit'); // Edit product
-            Route::post('/', [ProductController::class, 'store'])->name('products.store'); // Create product
-            Route::put('/{product}', [ProductController::class, 'update'])->name('products.update'); // Update product
-            Route::delete('/{product}', [ProductController::class, 'destroy'])->name('products.destroy'); // Delete product
-            Route::get('/{product}', [ProductController::class, 'show'])->name('products.show'); // View product details
+            Route::get('/', [ProductController::class, 'index'])->name('products.index');
+            Route::get('/create', [ProductController::class, 'create'])->name('products.create');
+            Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('products.edit');
+            Route::post('/', [ProductController::class, 'store'])->name('products.store');
+            Route::put('/{product}', [ProductController::class, 'update'])->name('products.update');
+            Route::delete('/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+            Route::get('/{product}', [ProductController::class, 'show'])->name('products.show');
         });
+        
         // Categories Routes (CRUD)
         Route::prefix('categories')->group(function () {
             Route::get('/', [CategoryController::class, 'index'])->name('categories.index'); // View all category

@@ -15,6 +15,7 @@ class Product extends Model
         'category_id',
         'brand_id',
         'price',
+        'original_price', // Added to fillable
         'stock',
     ];
 
@@ -22,18 +23,29 @@ class Product extends Model
     {
         return $this->hasOne(ProductImage::class, 'product_id');
     }
+
     // Define the relationship to Category
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);
     }
+
     // Relationship to Reviews
     public function reviews()
     {
         return $this->hasMany(Review::class, 'product_id');
     }
+
+    // In Product model
+
+    public function discounts()
+    {
+        return $this->hasMany(Discount::class);
+    }
+
 }

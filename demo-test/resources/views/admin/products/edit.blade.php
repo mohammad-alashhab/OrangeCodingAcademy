@@ -59,19 +59,51 @@
 
                     <div class="mb-4">
                         <label for="price" class="block text-gray-700">Price</label>
+
+                        <!-- If discount is active, disable price field but send the value as hidden input -->
+                        @if($activeDiscount)
+                        <input type="number" name="price" id="price"
+                            class="border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
+                            value="{{ old('price', $product->price) }}" disabled>
+
+                        <!-- Hidden price field to pass the value -->
+                        <input type="hidden" name="price" value="{{ old('price', $product->price) }}">
+
+                        <small class="text-gray-500">Price is locked due to active discount. Cancel discount to adjust.</small>
+                        @else
                         <input type="number" name="price" id="price"
                             class="border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
                             value="{{ old('price', $product->price) }}" required>
-                        @error('price') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                        @endif
+
+                        @error('price')
+                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-4">
                         <label for="stock" class="block text-gray-700">Stock</label>
+
+                        @if($activeDiscount)
+                        <input type="number" name="stock" id="stock"
+                            class="border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
+                            value="{{ old('stock', $product->stock) }}" disabled>
+
+                        <!-- Hidden stock field to pass the value -->
+                        <input type="hidden" name="stock" value="{{ old('stock', $product->stock) }}">
+
+                        <small class="text-gray-500">Stock is locked due to active discount. Cancel discount to adjust.</small>
+                        @else
                         <input type="number" name="stock" id="stock"
                             class="border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
                             value="{{ old('stock', $product->stock) }}" required>
-                        @error('stock') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                        @endif
+
+                        @error('stock')
+                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                        @enderror
                     </div>
+
 
                     <div class="mb-4">
                         <label for="front_img" class="block text-gray-700">Front Image</label>

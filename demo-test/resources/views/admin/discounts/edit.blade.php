@@ -12,33 +12,37 @@
                     <form action="{{ route('discounts.update', $discount->id) }}" method="POST">
                         @csrf
                         @method('PUT')
+
                         <div class="mb-4">
                             <label for="product_id" class="block text-sm font-medium text-gray-700">Product</label>
                             <select name="product_id" id="product_id" class="form-control" required>
                                 <option value="">Select Product</option>
                                 @foreach ($products as $product)
                                 <option value="{{ $product->id }}" {{ $product->id == $discount->product_id ? 'selected' : '' }}>
-                                    {{ $product->name }}
+                                    {{ $product->name }} (Price: {{ $product->price }})
                                 </option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-4">
-                            <label for="newprice" class="block text-sm font-medium text-gray-700">New Price</label>
-                            <input type="number" name="newprice" id="newprice" class="form-control" value="{{ old('newprice', $discount->newprice) }}" required>
+                            <label for="percentage" class="block text-sm font-medium text-gray-700">Discount Percentage (%)</label>
+                            <input type="number" name="percentage" id="percentage" class="form-control"
+                                value="{{ old('percentage', $discount->percentage) }}" min="0" max="100" required>
                         </div>
 
                         <div class="mb-4">
                             <label for="startdate" class="block text-sm font-medium text-gray-700">Start Date</label>
-                            <input type="date" name="startdate" id="startdate" class="form-control" value="{{ old('startdate', $discount->startdate) }}" required>
+                            <input type="date" name="startdate" id="startdate" class="form-control"
+                                value="{{ old('startdate', $discount->startdate) }}" required>
                         </div>
 
                         <div class="mb-4">
                             <label for="enddate" class="block text-sm font-medium text-gray-700">End Date</label>
-                            <input type="date" name="enddate" id="enddate" class="form-control" value="{{ old('enddate', $discount->enddate) }}" required>
+                            <input type="date" name="enddate" id="enddate" class="form-control"
+                                value="{{ old('enddate', $discount->enddate) }}" required>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary">Update Discount</button>
                     </form>
                 </div>

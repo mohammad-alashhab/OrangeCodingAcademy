@@ -11,7 +11,7 @@ class Discount extends Model
 
     protected $fillable = [
         'product_id',
-        'newprice',
+        'percentage',
         'startdate',
         'enddate',
         'is_active'
@@ -33,4 +33,15 @@ class Discount extends Model
     {
         return $query->where('is_active', false);
     }
+
+    public function isExpired()
+    {
+        return $this->enddate < now();
+    }
+
+    public function calculateDiscountedPrice()
+    {
+        return $this->product->price - ($this->product->price * ($this->percentage / 100));
+    }
+
 }
