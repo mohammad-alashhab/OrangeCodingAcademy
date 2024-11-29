@@ -27,7 +27,6 @@
                                 <th class="px-4 py-2">Product</th>
                                 <th class="px-4 py-2">Price</th>
                                 <th class="px-4 py-2">Discount (%)</th>
-                                <th class="px-4 py-2">New Price</th>
                                 <th class="px-4 py-2">Start Date</th>
                                 <th class="px-4 py-2">End Date</th>
                                 <th class="px-4 py-2">Status</th>
@@ -40,9 +39,6 @@
                                 <td class="px-4 py-2">{{ $discount->product->name }}</td>
                                 <td class="px-4 py-2">{{ number_format($discount->product->price, 2) }}</td>
                                 <td class="px-4 py-2">{{ $discount->percentage }}%</td>
-                                <td class="px-4 py-2">
-                                    {{ number_format($discount->product->price - ($discount->product->price * ($discount->percentage / 100)), 2) }}
-                                </td>
                                 <td class="px-4 py-2">{{ $discount->startdate }}</td>
                                 <td class="px-4 py-2">{{ $discount->enddate }}</td>
                                 <td class="px-4 py-2">{{ $discount->is_active ? 'Active' : 'Inactive' }}</td>

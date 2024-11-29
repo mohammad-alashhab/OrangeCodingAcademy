@@ -15,7 +15,7 @@ class DiscountController extends Controller
 
         // Fetch the discounts, along with their related products
         $discounts = Discount::query()
-        ->with('product')
+            ->with('product')
             ->when($search, function ($query) use ($search) {
                 $query->whereHas('product', function ($query) use ($search) {
                     $query->where('name', 'like', "%{$search}%");
@@ -26,13 +26,20 @@ class DiscountController extends Controller
         // Check if any discount has expired and update its status
         foreach ($discounts as $discount) {
             if (now()->greaterThanOrEqualTo($discount->enddate) && $discount->is_active) {
-                $discount->update(['is_active' => false]);  // Automatically deactivate expired discounts
+                $product = $discount->product;
+
+                // Revert product price to its original price
+                if ($product->original_price) {
+                    $product->update(['price' => $product->original_price]);
+                }
+
+                // Automatically deactivate the discount
+                $discount->update(['is_active' => false]);
             }
         }
 
         return view('admin.discounts.index', compact('discounts'));
     }
-
 
     // Show form to create a new discount
     public function create()
@@ -55,15 +62,19 @@ class DiscountController extends Controller
         $discount = Discount::create($validated);
 
         // Calculate the discounted price
-        $product = $discount->product; // Get related product
-        $discountedPrice = $product->price - ($product->price * ($discount->percentage / 100));
+        $product = $discount->product;
 
-        // Update product price
+        // Check and store the original price if not already set
+        if (!$product->original_price) {
+            $product->original_price = $product->price; // Assume `original_price` exists in `products` table
+            $product->save();
+        }
+
+        $discountedPrice = $product->original_price - ($product->original_price * ($discount->percentage / 100));
         $product->update(['price' => $discountedPrice]);
 
         return redirect()->route('discounts.index')->with('success', 'Discount created successfully!');
     }
-
 
     // Show form to edit a discount
     public function edit($id)
@@ -87,28 +98,28 @@ class DiscountController extends Controller
             'is_active' => 'boolean',
         ]);
 
-        $product = $discount->product; // Get the associated product
+        $product = $discount->product;
 
-        // Check if original price exists; if not, store the current price as the original
-        if (!$product->original_price) {
-            $product->original_price = $product->price; // Assume `original_price` is a column in `products` table
-            $product->save();
+        // Only update product price if the discount is active and not expired
+        if ($discount->is_active && now()->lessThanOrEqualTo($discount->enddate)) {
+            // Revert the product price to the original price
+            if ($product->original_price) {
+                $product->price = $product->original_price;
+                $product->save();
+            }
+
+            // Recalculate the new discounted price
+            $discountedPrice = $product->original_price - ($product->original_price * ($validated['percentage'] / 100));
+
+            // Update the product price
+            $product->update(['price' => $discountedPrice]);
         }
 
-        // Revert the product price to the original price
-        $product->price = $product->original_price;
-        $product->save();
-
-        // Recalculate the new discounted price
-        $discountedPrice = $product->original_price - ($product->original_price * ($validated['percentage'] / 100));
-
-        // Update the discount and product price
+        // Update the discount details regardless
         $discount->update($validated);
-        $product->update(['price' => $discountedPrice]);
 
         return redirect()->route('discounts.index')->with('success', 'Discount updated successfully!');
     }
-
 
 
     // Delete a discount
@@ -118,14 +129,14 @@ class DiscountController extends Controller
         $product = $discount->product;
 
         // Restore original price
-        $originalPrice = $product->price / (1 - ($discount->percentage / 100));
-        $product->update(['price' => $originalPrice]);
+        if ($product->original_price) {
+            $product->update(['price' => $product->original_price]);
+        }
 
         $discount->delete();
 
         return redirect()->route('discounts.index')->with('success', 'Discount deleted successfully!');
     }
-
 
     // Toggle discount status (activate/deactivate)
     public function toggleStatus($id)
@@ -135,30 +146,25 @@ class DiscountController extends Controller
 
         // Check if the discount has expired
         if (now()->greaterThanOrEqualTo($discount->enddate)) {
-            // If the discount is expired, don't allow it to be activated
             return redirect()->route('discounts.index')
-            ->with('error', 'This discount has expired and cannot be reactivated.');
+                ->with('error', 'This discount has expired and cannot be reactivated.');
         }
 
-        // Proceed to toggle the discount status
         if ($discount->is_active) {
             // Restore original price
-            $originalPrice = $product->price / (1 - ($discount->percentage / 100));
-            $product->update(['price' => $originalPrice]);
+            if ($product->original_price) {
+                $product->update(['price' => $product->original_price]);
+            }
         } else {
             // Apply discounted price
-            $discountedPrice = $product->price - ($product->price * ($discount->percentage / 100));
+            $discountedPrice = $product->original_price - ($product->original_price * ($discount->percentage / 100));
             $product->update(['price' => $discountedPrice]);
         }
 
-        // Toggle the discount status
         $discount->update(['is_active' => !$discount->is_active]);
 
         return redirect()->route('discounts.index')->with('success', 'Discount status updated successfully!');
     }
-
-
-
 
     // Show a single discount details
     public function show($id)
