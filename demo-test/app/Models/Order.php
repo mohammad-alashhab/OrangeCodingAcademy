@@ -43,6 +43,12 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class);
+    }
+
+
     // Accessor for dynamically calculating total price
     public function getTotalPriceAttribute()
     {

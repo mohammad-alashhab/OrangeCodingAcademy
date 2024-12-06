@@ -10,6 +10,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,9 +32,7 @@ Route::middleware(['auth', 'auth.role'])->group(function () {
 
     // Admin Routes
     Route::prefix('dashboard')->group(function () {
-        Route::get('/', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         // Users Routes (CRUD)
         Route::prefix('users')->group(function () {
@@ -67,7 +66,7 @@ Route::middleware(['auth', 'auth.role'])->group(function () {
             Route::delete('/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
             Route::get('/{product}', [ProductController::class, 'show'])->name('products.show');
         });
-        
+
         // Categories Routes (CRUD)
         Route::prefix('categories')->group(function () {
             Route::get('/', [CategoryController::class, 'index'])->name('categories.index'); // View all category
@@ -99,15 +98,15 @@ Route::middleware(['auth', 'auth.role'])->group(function () {
         // Reviews Routes
         Route::prefix('reviews')->group(function () {
             Route::get('/', [ReviewController::class, 'index'])->name('reviews.index'); // View all reviews
-            Route::get('/{id}', [ReviewController::class, 'show'])->name('reviews.show');
+            Route::get('/{review}', [ReviewController::class, 'show'])->name('reviews.show');
             Route::post('/toggle-visibility/{id}', [ReviewController::class, 'toggleVisibility'])->name('reviews.toggleVisibility');
         });
 
         // Contact Routes
         Route::prefix('contacts')->group(function () {
             Route::get('/', [ContactController::class, 'index'])->name('contacts.index'); // View all reviews
-            Route::get('/{id}', [ContactController::class, 'show'])->name('contacts.show');
-            Route::post('/{id}/status', [ContactController::class, 'updateStatus'])->name('contacts.updateStatus');
+            Route::get('/{contact}', [ContactController::class, 'show'])->name('contacts.show');
+            Route::post('/{contact}/status', [ContactController::class, 'updateStatus'])->name('contacts.updateStatus');
         });
 
         // Discount Routes
@@ -123,7 +122,7 @@ Route::middleware(['auth', 'auth.role'])->group(function () {
     });
 });
 
-Route::middleware(['auth', 'auth.role'])->group(function () {
+Route::middleware(['auth', 'auth.role', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

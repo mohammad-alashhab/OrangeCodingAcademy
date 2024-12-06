@@ -405,7 +405,7 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="input-group">
-                        <input type="email" id="email" name="email" class="input-field" required autofocus autocomplete="username" placeholder="Email address" />
+                        <input type="email" id="email" name="email" class="input-field" required autofocus autocomplete="username" placeholder="Email address" value="{{ old('email', request()->cookie('remember_email')) }}" />
                         <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                             <polyline points="22,6 12,13 2,6" />
@@ -414,7 +414,7 @@
                     </div>
 
                     <div class="input-group">
-                        <input type="password" id="password" name="password" class="input-field" required autocomplete="current-password" placeholder="Password" />
+                        <input type="password" id="password" name="password" class="input-field" required autocomplete="current-password" placeholder="Password" value="{{ old('password', request()->cookie('remember_password') ? Crypt::decryptString(request()->cookie('remember_password')) : '') }}" />
                         <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                             <path d="M7 11V7a5 5 0 0110 0v4" />
@@ -424,7 +424,7 @@
 
                     <div class="flex items-center justify-between mb-5">
                         <label for="remember_me" class="inline-flex items-center">
-                            <input id="remember_me" type="checkbox" class="rounded" name="remember">
+                            <input id="remember_me" type="checkbox" class="rounded" name="remember" {{ request()->cookie('remember_me') ? 'checked' : '' }}>
                             <span class="ml-2 text-sm text-gray-600">Remember me</span>
                         </label>
 
@@ -462,5 +462,50 @@
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             container.setAttribute('data-theme', newTheme);
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            const submitButton = form.querySelector('button[type="submit"]');
+            let isSubmitting = false;
+
+            // Prevent multiple submissions
+            form.addEventListener('submit', (e) => {
+                if (isSubmitting) {
+                    e.preventDefault();
+                    return;
+                }
+
+                isSubmitting = true;
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+
+                // Re-enable the button after a short delay
+                setTimeout(() => {
+                    isSubmitting = false;
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                }, 2000); // 2 seconds delay
+            });
+
+
+            
+
+            // Optional: Periodic token refresh
+            setInterval(async () => {
+                try {
+                    const response = await fetch('/refresh-csrf');
+                    const data = await response.json();
+
+                    if (data.token) {
+                        const csrfTokenInput = form.querySelector('input[name="_token"]');
+                        if (csrfTokenInput) {
+                            csrfTokenInput.value = data.token;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Periodic CSRF token refresh failed:', error);
+                }
+            }, 10 * 60 * 1000); // Refresh every 10 minutes
+        });
     </script>
 </x-guest-layout>

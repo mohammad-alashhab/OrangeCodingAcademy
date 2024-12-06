@@ -76,6 +76,7 @@
                             <tr>
                                 <th class="border px-4 py-2">Order ID</th>
                                 <th class="border px-4 py-2">Total Price</th>
+                                <th class="border px-4 py-2">Coupon Discount</th>
                                 <th class="border px-4 py-2">Status</th>
                                 <th class="border px-4 py-2">Date</th>
                             </tr>
@@ -84,17 +85,36 @@
                             @forelse ($orders as $order)
                             <tr>
                                 <td class="border px-4 py-2">{{ $order->id }}</td>
-                                <td class="border px-4 py-2">${{ $order->total_price }}</td>
-                                <td class="border px-4 py-2">{{ $order->status->name ?? 'N/A' }}</td>
+                                <td class="border px-4 py-2">${{ number_format($order->total_price, 2) }}</td>
+                                <td class="border px-4 py-2">
+                                    @if ($order->coupon)
+                                    <span>{{ $order->coupon->code }} ({{ $order->coupon->discount_percentage }}%)</span>
+                                    @else
+                                    <span>N/A</span>
+                                    @endif
+                                </td>
+                                <td class="border px-4 py-2">
+                                    <span class="
+                    @if ($order->status->name === 'completed') text-green-500 font-bold 
+                    @elseif ($order->status->name === 'pending') text-yellow-500 font-bold 
+                    @elseif ($order->status->name === 'canceled') text-red-500 font-bold 
+                    @else text-gray-500 
+                    @endif">
+                                        {{ $order->status->name ?? 'N/A' }}
+                                    </span>
+                                </td>
                                 <td class="border px-4 py-2">{{ $order->created_at->format('d/m/Y') }}</td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="4" class="border px-4 py-2 text-center">No orders found.</td>
+                                <td colspan="5" class="border px-4 py-2 text-center text-gray-500">
+                                    No orders available. Start shopping to place your first order!
+                                </td>
                             </tr>
                             @endforelse
                         </tbody>
                     </table>
+
                     <div class="mt-4">
                         {{ $orders->links() }}
                     </div>

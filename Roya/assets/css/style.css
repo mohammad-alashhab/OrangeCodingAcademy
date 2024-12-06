@@ -1,0 +1,192 @@
+/* 
+author: @mohammad-alashhab
+github:  @mohammad-alashhab
+email: moh.t.alashhab@gmail.com
+date: 2024-09-19
+project: prtfolio
+version: 1.0.0
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+:root{
+    --main-color: #F0F0F0;
+    --secondary-color: #1B2A4D;
+    --white-color: #fff;
+    --red-color: #ff392e;
+    --black-color: #000;
+    --span-color: #3A9CFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Almarai", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.2;
+    background-color: var(--main-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    margin: 10px 0;
+}
+
+h1 {
+    font-size: 2.986rem;
+}
+
+h2 {
+    font-size: 2.488rem;
+}
+
+h3 {
+    font-size: 2.074rem;
+}
+
+h4 {
+    font-size: 1.728rem;
+}
+
+h5 {
+    font-size: 1.44rem;
+}
+
+h6 {
+    font-size: 1.1rem; /*1.2rem; */
+    font-weight: 500;
+}
+
+p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.small {
+    font-size: 0.8rem;
+}
+
+/*----------- Container -------------*/
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+/*----------- Buttons -------------*/
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border-radius: 3px;
+    text-decoration: none;
+    text-align: center;
+    /* padding: 8px 2rem; */
+    font-size: 1rem;
+    font-weight: 400;
+    width: 150px;
+    height: 36px;
+}
+.btn-primary {
+    background-color: var(--red-color);
+    color: var(--white-color);
+    border: 1px solid var(--red-color);
+}
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    border: 1px solid var(--secondary-color);
+}
+.btn-primary:hover {
+    color: var(--black-color);
+    border-color: var(--red-color);
+    background-color: var(--white-color);
+}
+.btn-secondary:hover {
+    color: var(--black-color);
+    border-color: var(--secondary-color);
+    background-color: var(--white-color);
+}
+
+/*----------- Top-Nav -------------*/
+
+.top-nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.text-right{
+    font-size: 17px;
+    color: var(--secondary-color);
+    width: 550px;
+    text-align: end;
+}
+.text-right span {
+    line-height: 2;
+}
+
+/*----------- Navbar -------------*/
+
+.box-1{
+    background-color: var(--white-color);
+}
+.logo{
+    width: 50px;
+    height: 50px;
+}
+.text-logo{
+    font-size: 27px;
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+.nav-item{
+    font-size: 18px;
+    font-weight: 700;
+}
+.nav-link{
+    width: max-content;
+    color: var(--secondary-color);
+}
+.nav-item:hover{
+    border-bottom: 2px solid var(--secondary-color);
+}
+.nav-link.active{
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+/*----------- Navbar -------------*/
+
+
+.box-field{
+    width: 400px;
+}
+.box-text span{
+    font-size: 12px;
+    color: var(--span-color);
+    font-weight: 700;
+}
+.field-items{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 6px 0px 6px;
+    margin: 0;
+}
+.img-field{
+    width: 120px;
+    height: 65px;
+}
+.field-icons{
+    gap: 12px;
+    font-size: 20px;
+}
+.img-big{
+    width: 700px;
+    height: 600px;
+}
