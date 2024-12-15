@@ -1,0 +1,87 @@
+/*----------- Hero -------------*/
+.box-1{
+    margin-bottom: 100px;
+}
+
+.box-1-container{
+    display: flex;
+    justify-content: space-between;
+}
+.image-hero {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    clip-path: circle(50% at 50% 50%);
+    background-color: #c75600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.image-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.btn-secondary:hover {
+    background: #f4f4f4;
+}
+.footer-icon, .hero-icon{
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    margin-top: 25px;
+    gap: 10px;
+}
+.footer-icon a, .hero-icon a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--secondery-color);
+    border-radius: 50%;
+    background-color: #000;
+    width: 50px;
+    height: 30px;
+}
+.hero-content .content-top h2{
+    color: var(--main-color);
+    font-weight: 500;
+}
+
+.content-down{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #1E1C1B;
+    padding: 10px 20px 5px 20px;
+    border-radius: 5px;
+}
+.color-secondary{
+    color: var(--secondery-color);
+}
+.color{
+    color: var(--main-color);
+}
+.content-down .split{
+    color: var(--secondery-color);
+    font-size: 50px;
+    font-weight: 100;
+}
+
+.footer-icon a:hover, .hero-icon a:hover {
+    color: var(--main-color);
+    transform: scale(1.1);
+}
+.hero-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 70px;
+}

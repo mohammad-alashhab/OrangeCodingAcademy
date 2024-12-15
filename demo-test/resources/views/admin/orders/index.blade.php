@@ -15,9 +15,10 @@
     <div class="py-12 bg-gray-50 dark:bg-gray-900">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg overflow-hidden">
-                <!-- Advanced Filters Section -->
-                <div class="bg-gray-100 dark:bg-gray-700 p-6">
-                    <form method="GET" action="{{ route('orders.index') }}" class="grid md:grid-cols-4 gap-4">
+                <!-- Search and Filter Section -->
+                <div class="bg-gray-100 dark:bg-gray-700 p-6 flex items-center space-x-4">
+                    <!-- Search Form -->
+                    <form method="GET" action="{{ route('orders.index') }}" class="flex-grow">
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -29,12 +30,16 @@
                                 name="search"
                                 placeholder="Search orders..."
                                 value="{{ request('search') }}"
-                                class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:bg-gray-600 dark:border-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 transition">
+                                class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:bg-gray-600 dark:border-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 transition"
+                                onkeypress="if(event.keyCode === 13) this.form.submit();">
                         </div>
+                    </form>
 
+                    <!-- Filter Form -->
+                    <form method="GET" action="{{ route('orders.index') }}" class="flex space-x-4">
                         <select
                             name="status"
-                            class="w-full rounded-lg border border-gray-300 dark:bg-gray-600 dark:border-gray-700 dark:text-white px-4 py-2 focus:ring-2 focus:ring-blue-500">
+                            class="rounded-lg border border-gray-300 dark:bg-gray-600 dark:border-gray-700 dark:text-white py-2 focus:ring-2 focus:ring-blue-500">
                             <option value="">All Statuses</option>
                             @foreach($statuses as $status)
                             <option
@@ -45,13 +50,13 @@
                             @endforeach
                         </select>
 
-                        <select
+                        <!-- <select
                             name="approved"
-                            class="w-full rounded-lg border border-gray-300 dark:bg-gray-600 dark:border-gray-700 dark:text-white px-4 py-2 focus:ring-2 focus:ring-blue-500">
+                            class="rounded-lg border border-gray-300 dark:bg-gray-600 dark:border-gray-700 dark:text-white px-4 py-2 focus:ring-2 focus:ring-blue-500">
                             <option value="">Approval Status</option>
                             <option value="1" {{ request('approved') == '1' ? 'selected' : '' }}>Approved</option>
                             <option value="0" {{ request('approved') == '0' ? 'selected' : '' }}>Not Approved</option>
-                        </select>
+                        </select> -->
 
                         <button
                             type="submit"
@@ -73,7 +78,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Customer</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Total Price</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Approved</th>
+                                <!-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Approved</th> -->
                                 <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
@@ -110,7 +115,7 @@
                                         {{ ucfirst($order->status->name) }}
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                <!-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                                     <span class="
                                         px-3 py-1 inline-flex text-xs leading-5 
                                         font-semibold rounded-full 
@@ -118,7 +123,7 @@
                                     ">
                                         {{ $order->is_approved ? 'Approved' : 'Not Approved' }}
                                     </span>
-                                </td>
+                                </td> -->
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="{{ route('orders.show', $order->id) }}"
                                         class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 flex items-center justify-end space-x-2">

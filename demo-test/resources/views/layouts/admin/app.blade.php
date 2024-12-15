@@ -30,6 +30,9 @@
         rel="stylesheet"
         href="https://site-assets.fontawesome.com/releases/v6.6.0/css/sharp-light.css" />
 
+    <!-- In your head section or before closing body tag -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.7/dist/cdn.min.js"></script>
+
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])

@@ -64,7 +64,7 @@ class OrderController extends Controller
                 'shipping_address_id' => $validated['shipping_address_id'],
                 'billing_address_id' => $validated['billing_address_id'],
                 'coupon_id' => null, // Will update later if coupon is valid
-                'is_approved' => false,
+                // 'is_approved' => false,
             ]);
 
             // Calculate total price of the order items
@@ -114,14 +114,14 @@ class OrderController extends Controller
 
 
     // Approve or disapprove an order
-    public function toggleApproval(Request $request, Order $order)
-    {
-        $order->update([
-            'is_approved' => $request->input('is_approved', $order->is_approved), // Toggle between 1 (approved) and 0 (disapproved)
-        ]);
+    // public function toggleApproval(Request $request, Order $order)
+    // {
+    //     $order->update([
+    //         'is_approved' => $request->input('is_approved', $order->is_approved), // Toggle between 1 (approved) and 0 (disapproved)
+    //     ]);
 
-        return redirect()->route('orders.index')->with('success', 'Order approval status updated!');
-    }
+    //     return redirect()->route('orders.index')->with('success', 'Order approval status updated!');
+    // }
 
     // Update order status
     public function updateStatus(Request $request, Order $order)

@@ -1,0 +1,84 @@
+/*----------- About me -------------*/
+.box-2{
+    margin-bottom: 100px;
+}
+.box-2-container{
+    display: flex;
+    justify-content: space-between;
+}
+.image-about {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    clip-path: circle(50% at 50% 50%);
+    background-color: #c75600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 50px;
+    border-radius: 50%;
+    border: #1E1C1B 7px double ;
+}
+.image-about img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.h2-new{
+    text-align: center;
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 50px;
+}
+.nav-tab{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 65%;
+    gap: 20px;
+}
+.tab-items{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 20px;
+}
+.tab-content{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+.tab-content .content-left{
+    width: 50%;
+}
+.tab-link{
+    color: var(--secondery-color);
+    text-decoration: none;
+    padding: 5px 5px;
+    transition: background 0.3s ease;
+    
+}
+.tab-link:hover{
+    color: var(--main-color);
+}
+.tab-link:focus{
+    color: var(--main-color);
+    border-bottom: 2px solid var(--main-color);
+}
+.tab-link.active{
+    color: var(--main-color);
+    border-bottom: 2px solid var(--main-color);
+}
+.tab-content .content-left h6{
+    font-size: 16px;
+}
+.tab-content .content-left p{
+    font-size: 12px;
+}
+.tab-content .content-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

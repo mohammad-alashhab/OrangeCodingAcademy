@@ -17,34 +17,25 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $brand = $request->input('brand');
-        $category = $request->input('category');
 
         $products = Product::query()
             ->when($search, function ($query) use ($search) {
                 $query->where('name', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%");
-            })
-            ->when($brand, function ($query) use ($brand) {
-                $query->whereHas('brand', function ($query) use ($brand) {
-                    $query->where('name', 'like', "%{$brand}%");
-                });
-            })
-            ->when($category, function ($query) use ($category) {
-                $query->whereHas('category', function ($query) use ($category) {
-                    $query->where('name', 'like', "%{$category}%");
+                ->orWhere('description', 'like', "%{$search}%")
+                ->orWhereHas('category', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->orWhereHas('brand', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
                 });
             })
             ->orderBy('id', 'asc')
             ->with('images', 'category', 'brand') // Eager load product images, categories, and brands
             ->paginate(10);
 
-        // Fetch available brands and categories for filter dropdowns
-        $brands = Brand::all();
-        $categories = Category::all();
-
-        return view('admin.products.index', compact('products', 'brands', 'categories'));
+        return view('admin.products.index', compact('products'));
     }
+
 
 
     // Show form to create a product

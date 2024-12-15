@@ -170,6 +170,7 @@
                                                 <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" />
                                                 <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" />
                                             </svg>
+                                            <img src="{{ asset('storage/' .  $item->product->images->front_img) }}" alt="{{ $item->product->images->front_img }}" class="w-16 h-16">
                                         </div>
                                         <span class="font-medium">{{ $item->product->name }}</span>
                                     </div>
