@@ -44,8 +44,14 @@ class ProfileController extends Controller
 
         $user->save();
 
+        // Check user's role and redirect accordingly
+        if ($user->role_id === 3) {
+            return Redirect::route('profile.edit.ecommerce')->with('status', 'profile-updated');
+        }
+
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
+
 
 
     /**

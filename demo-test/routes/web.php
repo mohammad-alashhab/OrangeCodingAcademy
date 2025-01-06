@@ -1,16 +1,23 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CouponController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\DiscountController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\CouponController;
+use App\Http\Controllers\admin\OrderController;
+use App\Http\Controllers\admin\ReviewController;
+use App\Http\Controllers\admin\ContactController;
+use App\Http\Controllers\admin\DiscountController;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\ecommerce\CartController;
+use App\Http\Controllers\ecommerce\EcommerceController;
+use App\Http\Controllers\ecommerce\FaqController;
+use App\Http\Controllers\ecommerce\PrivacyPolicyController;
+use App\Http\Controllers\ecommerce\ProductDetailsController;
+use App\Http\Controllers\ecommerce\WishlistController;
+use App\Http\Controllers\ecommerce\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,13 +31,66 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth', 'auth.role'])->group(function () {
-    // General Routes
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
+Route::middleware(['auth', 'auth.role', 'verified'])->group(function () {
+        // E-Commerce Routes
+        // Route::get('/', function () {
+        //     return view('ecommerce.home');
+        // })->name('home');
 
-    // Admin Routes
+        Route::prefix('')->group(function () {
+
+        // Route::get('/', [EcommerceController::class, 'index'])->name('ecommerce');
+        // Route::get('/categories/{id}', [EcommerceController::class, 'show'])->name('categoriesShow.ecommerce');
+
+
+        // // Contact Routes
+        // Route::prefix('contact-us')->group(function () {
+        //     Route::get('/', [App\Http\Controllers\ecommerce\ContactController::class, 'index'])->name('contact-us.ecommerce'); // View all reviews
+        //     Route::post('/', [App\Http\Controllers\ecommerce\ContactController::class, 'store'])->name('contact-us.store');
+        // });
+
+        // // About-Us Routes
+        // Route::prefix('about-us')->group(function () {
+        //     Route::get('/', [EcommerceController::class, 'about'])->name('about-us.ecommerce'); // View all reviews
+        // });
+
+        // Products Details Routes
+        // Route::prefix('products-details')->group(function () {
+        //     Route::get('/{product}', [EcommerceController::class, 'productsDetails'])->name('products-details.ecommerce'); // View all reviews
+        // });
+        // Route::prefix('product-details')->group(function () {
+        //     Route::get('/', [ProductDetailsController::class, 'index'])->name('product-details.ecommerce'); // View all reviews
+        // });
+
+        // // Cart Routes
+        // Route::prefix('cart')->group(function () {
+        //     Route::get('/', [CartController::class, 'index'])->name('cart.ecommerce'); // View all reviews
+        // });
+
+        // // Wishlist Routes
+        // Route::prefix('wishlist')->group(function () {
+        //     Route::get('/', [WishlistController::class, 'index'])->name('wishlist.ecommerce'); // View all reviews
+        // });
+
+        // // Checkout Routes
+        // Route::prefix('checkout')->group(function () {
+        //     Route::get('/', [CartController::class, 'checkout'])->name('checkout.ecommerce'); // View all reviews
+        // });
+
+        // // Shop Routes
+        // Route::prefix('shop')->group(function () {
+        //     Route::get('/', [ShopController::class, 'index'])->name('shop.ecommerce'); // View all reviews
+        // });
+
+        // Profile Routes
+        Route::prefix('profile')->group(function () {
+            Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit.ecommerce');
+            Route::patch('/', [ProfileController::class, 'update'])->name('profile.update.ecommerce');
+            Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy.ecommerce');
+        });
+    });
+
+    // Admin Dashboard Routes
     Route::prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -119,13 +179,74 @@ Route::middleware(['auth', 'auth.role'])->group(function () {
             Route::post('/{discount}/toggle-status', [DiscountController::class, 'toggleStatus'])->name('discounts.toggleStatus');
             Route::delete('/{discount}', [DiscountController::class, 'destroy'])->name('discounts.destroy'); // Delete brands
         });
+
+        // Admin Profile Routes
+        Route::prefix('profile')->group(function () {
+            Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+            Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+            Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        });
     });
 });
 
-Route::middleware(['auth', 'auth.role', 'verified'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::prefix('')->group(function () {
+
+    Route::get('/', [EcommerceController::class, 'index'])->name('ecommerce');
+    Route::get('/categories/{id}', [EcommerceController::class, 'show'])->name('categoriesShow.ecommerce');
+    Route::get('/product/{id}/details', [EcommerceController::class, 'getProductDetails'])->name('product.details');
+
+    // Contact Routes
+    Route::prefix('contact-us')->group(function () {
+        Route::get('/', [App\Http\Controllers\ecommerce\ContactController::class, 'index'])->name('contact-us.ecommerce');
+        Route::post('/', [App\Http\Controllers\ecommerce\ContactController::class, 'store'])->name('contact-us.store');
+    });
+
+    // About-Us Routes
+    Route::prefix('about-us')->group(function () {
+        Route::get('/', [EcommerceController::class, 'about'])->name('about-us.ecommerce');
+    });
+
+    // Product Details Routes
+    Route::prefix('product-details')->group(function () {
+        Route::get('/{id}', [ProductDetailsController::class, 'index'])->name('product-details.ecommerce');
+        Route::post('/reviews', [ProductDetailsController::class, 'store'])->name('reviews.store'); // Corrected route
+    });
+
+    // Cart Routes
+    Route::prefix('cart')->group(function () {
+        Route::get('/', [CartController::class, 'index'])->name('cart.ecommerce');
+        Route::get('/add/{product_id}', [CartController::class, 'add'])->name('cart.add');
+        Route::get('/remove/{product_id}', [CartController::class, 'remove'])->name('cart.remove');
+        Route::delete('/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
+    });
+
+    // Wishlist Routes
+    Route::prefix('wishlist')->group(function () {
+        Route::get('/', [WishlistController::class, 'index'])->name('wishlist.ecommerce');
+        Route::get('/add/{product_id}', [WishlistController::class, 'add'])->name('wishlist.add');
+        Route::get('/remove/{product_id}', [WishlistController::class, 'remove'])->name('wishlist.remove'); // New route
+        Route::delete('/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
+    });
+
+    // Checkout Routes
+    Route::prefix('checkout')->group(function () {
+        Route::get('/', [CartController::class, 'checkout'])->name('checkout.ecommerce');
+    });
+
+    // Shop Routes
+    Route::prefix('shop')->group(function () {
+        Route::get('/', [ShopController::class, 'index'])->name('shop.ecommerce');
+    });
+
+    // Faq Routes
+    Route::prefix('faq')->group(function () {
+        Route::get('/', [FaqController::class, 'index'])->name('faq.ecommerce');
+    });
+
+    // privacy policy Routes
+    Route::prefix('privacy-policy')->group(function () {
+        Route::get('/', [PrivacyPolicyController::class, 'index'])->name('privacy-policy.ecommerce');
+    });
 });
 
 require __DIR__ . '/auth.php';

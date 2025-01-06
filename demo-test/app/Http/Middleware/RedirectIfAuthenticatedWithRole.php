@@ -54,8 +54,22 @@ class RedirectIfAuthenticatedWithRole
 
             if ($userRole === 3) { // Customer Role
                 // Allow only the welcome page
-                if (!$request->routeIs('welcome')) {
-                    return redirect()->route('welcome');
+                if (!$request->routeIs('ecommerce*') &&
+                !$request->routeIs('contact-us.*') &&
+                !$request->routeIs('about-us.*') &&
+                !$request->routeIs('cart.*') &&
+                !$request->routeIs('checkout.*') &&
+                !$request->routeIs('profile.*') &&
+                !$request->routeIs('my-orders.*') &&
+                !$request->routeIs('wishlist.*') &&
+                !$request->routeIs('categories.*') &&
+                !$request->routeIs('product-details.*') &&
+                !$request->routeIs('shop.*') &&
+                !$request->routeIs('faq.*') &&
+                !$request->routeIs('privacy-policy.*') &&
+                !$request->routeIs('reviews.*')
+                ) {
+                    return redirect()->route('ecommerce');
                 }
             }
         }

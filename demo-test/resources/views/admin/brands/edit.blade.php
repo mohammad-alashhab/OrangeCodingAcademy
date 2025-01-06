@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Brand') }}
@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <form action="{{ route('brands.update', $brand->id) }}" method="POST">
+                    <form action="{{ route('brands.update', $brand->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -21,6 +21,22 @@
                             @error('name')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
+                        </div>
+
+                        <!-- Brand Image -->
+                        <div class="mb-4">
+                            <label for="img" class="block text-gray-700 font-bold mb-2">{{ __('Brand Image') }}</label>
+                            <input type="file" id="img" name="img"
+                                class="w-full px-4 py-2 border rounded-lg @error('img') border-red-500 @enderror">
+                            @error('img')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+
+                            @if ($brand->img)
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/' . $brand->img) }}" alt="Brand Image" class="h-20 w-20 object-cover rounded-full">
+                            </div>
+                            @endif
                         </div>
 
                         <!-- Submit Button -->
@@ -37,4 +53,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-admin-app-layout>
